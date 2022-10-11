@@ -1,20 +1,20 @@
 package coen352.A1;
 
-public class WarehouseInventory<Key, E> {
+public class WarehouseInventory {
 	private static final int defaultSize = 100;
-	private DList<Key> sku;
-	private DList<E> values;
+	private DList<String> sku;
+	private DList<Inventory> values;
 	
 	WarehouseInventory()
 	{
-		sku = new DList<Key>();
-		values = new DList<E>();
+		sku = new DList<String>();
+		values = new DList<Inventory>();
 	}
 	
 	WarehouseInventory(int size)
 	{
-		keys = new DList<Key>(size);
-		values = new DList<E>(size)
+		sku = new DList<String>(size);
+		values = new DList<Inventory>(size);
 	}
 	
 	public void clear()
@@ -23,7 +23,7 @@ public class WarehouseInventory<Key, E> {
 		values.clear();
 	}
 	
-	public E find(Key k)
+	public Inventory find(String k)
 	{
 		for (int i=0; i<sku.length(); i++)
 		{
@@ -37,12 +37,7 @@ public class WarehouseInventory<Key, E> {
 		return null;
 	}
 	
-	public int size()
-	{
-		return sku.length();
-	}
-	
-	public void insert(Key k, E e)
+	public void insert(String k, Inventory e)
 	{
 		if(find(k) == null)
 		{
@@ -51,13 +46,42 @@ public class WarehouseInventory<Key, E> {
 		}
 	}
 	
-	public E remove(Key k)
+	public Inventory remove(String k)
 	{
 		if (find(k) == null)
 			return null;
-		E temp = find(k);
-		Key temp2 = sku.remove();
+		Inventory temp = find(k);
+		String temp2 = sku.remove();
 		return temp;
 		
 	}
+	
+	public Inventory removeAny()
+	{
+		if (size() != 0)
+		{
+			sku.remove();
+			return values.remove();
+		}
+		else
+			return null;
+	}
+	
+	public int size()
+	{
+		return sku.length();
+	}
+	
+	public float totalvalue()
+	{
+		float sum = 0;
+		for (int i=0; i<sku.length(); i++)
+		{
+			values.moveToPos(i);
+			sum += values.getValue().getinventoryval();
+		}
+		
+		return sum;
+	}
+	
 }

@@ -44,11 +44,11 @@ public class DictionaryJUnitTest {
 		dict.insert(1, "blue");
 		dict.insert(2,"yellow");
 		dict.insert(3, "grey");
-		dict.remove(0);
 		
 		//assertEquals("1:blue , 2:yellow , 3:grey ,", dict.toString());
 		
-		assertEquals("grey", dict.find(3), "remove failed"); 
+		assertEquals("grey", dict.remove(3), "remove failed: return"); 
+		assertEquals(3, dict.size(), "remove failed: size");
 		
 	}
 

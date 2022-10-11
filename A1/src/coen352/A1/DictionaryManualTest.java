@@ -23,6 +23,4 @@ public class DictionaryManualTest {
 		   t.testRemoveAny();
 		   t.testSize();
 	   }
-	   
-	
 }

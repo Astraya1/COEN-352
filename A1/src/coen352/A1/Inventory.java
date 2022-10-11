@@ -9,8 +9,8 @@ class Inventory
 	private String unit;
 	private int quantity;
 	private int reorderqty;
-	private float cost;
-	private float inventoryval;
+	private double cost;
+	private double inventoryval;
 	private boolean reorder;
 	
 	Inventory()
@@ -27,7 +27,7 @@ class Inventory
 		reorder = false;
 	}
 	
-	Inventory(String a, String b, String c, String d, String e, int f, int g, float h, float i, bool j)
+	Inventory(String a, String b, String c, String d, String e, int f, int g, double h, double i, boolean j)
 	{
 		sku = a;
 		description = b;
@@ -76,12 +76,12 @@ class Inventory
 		return reorderqty;
 	}
 	
-	public float getcost()
+	public double getcost()
 	{
 		return cost;
 	}
 	
-	public float getinventoryval()
+	public double getinventoryval()
 	{
 		return inventoryval;
 	}
@@ -89,30 +89,5 @@ class Inventory
 	public boolean getreorder()
 	{
 		return reorder;
-	}
-	
-	public String toString()
-	{
-		StringBuffer out = new StringBuffer();
-		out.append(sku);
-		out.append("; ");
-		out.append(description);
-		out.append("; ");
-		out.append(bin);
-		out.append("; ");
-		out.append(location);
-		out.append("; ");
-		out.append(unit);
-		out.append("; ");
-		out.append(quantity);
-		out.append("; ");
-		out.append(reorderqty);
-		out.append("; ");
-		out.append(cost);
-		out.append("; ");
-		out.append(inventoryval);
-		out.append("; ");
-		out.append(reorder);
-		
 	}
 }
