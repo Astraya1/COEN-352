@@ -1,4 +1,4 @@
-package coen352.ch4.list;
+package coen352.A1;
 
 /** Array-based list implementation */
 public class AList<E> implements ADTList<E> {

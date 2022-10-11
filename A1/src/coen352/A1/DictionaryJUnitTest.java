@@ -1,4 +1,4 @@
-package coen352.ch4.dictionary;
+package coen352.A1;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -15,7 +15,7 @@ public class DictionaryJUnitTest {
 	  
 	@BeforeAll
 	public static void setUp() {
-		dict = new ALDictionary<Integer, String>(10);
+		dict = new DLDictionary<Integer, String>(10);
 		//dict = new LLDictionary<String, InventoryRecord>(10);
 		
 	}

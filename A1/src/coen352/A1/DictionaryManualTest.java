@@ -1,4 +1,4 @@
-package coen352.ch4.dictionary;
+package coen352.A1;
 
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;

@@ -1,19 +1,18 @@
 package coen352.A1;
 
-public class LLDictionary<Key, E> implements ADTDictionary<Key, E> {
-	
+public class DLDictionary<Key, E> implements ADTDictionary<Key, E> {
 	private static final int defaultSize = 100;
-	private LList<Key> keys;
-	private LList<E> values;
+	private DList<Key> keys;
+	private DList<E> values;
 	
-	LLDictionary() {
-		keys = new LList<Key>();
-		values = new LList<E>();
+	DLDictionary() {
+		keys = new DList<Key>();
+		values = new DList<E>();
 	}
 	
-	LLDictionary(int size)	{
-		keys = new LList<Key>(size);
-		values = new LList<E>(size);
+	DLDictionary(int size)	{
+		keys = new DList<Key>(size);
+		values = new DList<E>(size);
 	}
 	
 	public void clear() {
@@ -83,3 +82,4 @@ public class LLDictionary<Key, E> implements ADTDictionary<Key, E> {
 	}
 	
 }
+

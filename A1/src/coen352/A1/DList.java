@@ -7,7 +7,7 @@ Copyright 2008-2011 by Clifford A. Shaffer
 */
 
 //Doubly linked list implementation
-public class DList<E> implements ADTList<E> {
+public class DList<E> {
 	
 	private DLink<E> head;        // Pointer to list header
 	private DLink<E> tail;        // Pointer to last element in list 
