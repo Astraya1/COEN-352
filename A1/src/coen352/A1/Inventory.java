@@ -2,7 +2,6 @@ package coen352.A1;
 
 class Inventory 
 {
-	private String sku;
 	private String description;
 	private String bin;
 	private String location;
@@ -15,7 +14,6 @@ class Inventory
 	
 	Inventory()
 	{
-		sku = "";
 		description = "";
 		bin = "";
 		location = "";
@@ -27,9 +25,8 @@ class Inventory
 		reorder = false;
 	}
 	
-	Inventory(String a, String b, String c, String d, String e, int f, int g, double h, double i, boolean j)
+	Inventory(String b, String c, String d, String e, int f, int g, double h, double i, boolean j)
 	{
-		sku = a;
 		description = b;
 		bin = c;
 		location = d;
@@ -39,11 +36,6 @@ class Inventory
 		cost = h;
 		inventoryval = i;
 		reorder = j;
-	}
-	
-	public String getsku()
-	{
-		return sku;
 	}
 	
 	public String getdescription()

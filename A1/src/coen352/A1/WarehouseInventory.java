@@ -1,87 +1,109 @@
 package coen352.A1;
 
 public class WarehouseInventory {
-	private static final int defaultSize = 100;
-	private DList<String> sku;
-	private DList<Inventory> values;
+
+	private DLDictionary<String, Inventory> warehouse;
 	
 	WarehouseInventory()
 	{
-		sku = new DList<String>();
-		values = new DList<Inventory>();
+		warehouse = new DLDictionary<String, Inventory>();
 	}
 	
 	WarehouseInventory(int size)
 	{
-		sku = new DList<String>(size);
-		values = new DList<Inventory>(size);
+		warehouse = new DLDictionary<String, Inventory>(size);
 	}
 	
 	public void clear()
 	{
-		sku.clear();
-		values.clear();
+		warehouse.clear();
 	}
 	
 	public Inventory find(String k)
 	{
-		for (int i=0; i<sku.length(); i++)
-		{
-			sku.moveToPos(i);
-			if (k == sku.getValue())
-			{
-				values.moveToPos(i);
-				return values.getValue();
-			}
-		}
-		return null;
+		return warehouse.find(k);
 	}
 	
 	public void insert(String k, Inventory e)
 	{
-		if(find(k) == null)
-		{
-			sku.append(k);
-			values.append(e);
-		}
+		warehouse.insert(k, e);
 	}
 	
 	public Inventory remove(String k)
 	{
-		if (find(k) == null)
-			return null;
-		Inventory temp = find(k);
-		String temp2 = sku.remove();
-		return temp;
+		return warehouse.remove(k);
 		
 	}
 	
 	public Inventory removeAny()
 	{
-		if (size() != 0)
-		{
-			sku.remove();
-			return values.remove();
-		}
-		else
-			return null;
+		return warehouse.removeAny();
 	}
 	
 	public int size()
 	{
-		return sku.length();
+		return warehouse.size();
 	}
 	
-	public float totalvalue()
+	public double totalvalue()
 	{
-		float sum = 0;
-		for (int i=0; i<sku.length(); i++)
+		double sum = 0;
+		DList<String> skus = warehouse.getkeys();
+		
+		for (int i=0; i<skus.length(); i++)
 		{
-			values.moveToPos(i);
-			sum += values.getValue().getinventoryval();
+			skus.moveToPos(i);
+			sum = sum + warehouse.find(skus.getValue()).getinventoryval();
 		}
 		
 		return sum;
 	}
-	
+		
+	public String query(String attribute, double perct) //Question 2
+	//I made the return type String instead of void so I can test it using JUnit 5.
+	{
+		if (perct >= 1)
+		{
+			System.out.println("Error: perct must be less than 1");
+			return null;
+		}
+		
+		Integer[] arrInt = new Integer[warehouse.size()];
+		Double[] arrDouble = new Double[warehouse.size()];
+		
+		if (attribute == "quantity")
+		{
+			arrInt = warehouse.createIndex("quantity");
+			int pivot = (int)(warehouse.size() * perct);
+			System.out.println(arrInt[pivot]);
+			return arrInt[pivot].toString();
+		}
+		
+		else if (attribute == "reorderqty")
+		{
+			arrInt = warehouse.createIndex("reorderqty");
+			int pivot = (int)(warehouse.size() * perct);
+			System.out.print(arrInt[pivot]);
+			return arrInt[pivot].toString();
+		}
+		
+		else if (attribute == "cost")
+		{
+			arrDouble = warehouse.createIndex("cost");
+			int pivot = (int)(warehouse.size() * perct);
+			System.out.println(arrDouble[pivot]);
+			return arrDouble[pivot].toString();
+		}
+		
+		else if (attribute == "inventoryval")
+		{
+			arrDouble = warehouse.createIndex("inventoryval");
+			int pivot = (int)(warehouse.size() * perct);
+			System.out.println(arrDouble[pivot]);
+			return arrDouble[pivot].toString();
+		}
+		
+		return null;
+	}
+
 }
